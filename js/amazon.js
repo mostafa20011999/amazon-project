@@ -52,18 +52,17 @@ products.forEach((item)=>{
 </div>`
 
 })
-function updateCartCounter(){
+ function updateCartCounter(){
   cartQuantity++;
   document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
 }
 document.querySelector(".js-product-grid").innerHTML = pageHtml;
-let cartQuantity = 0;
+ let cartQuantity = 0;
 document.querySelectorAll(".js-add-to-cart").forEach((button)=>{
  button.addEventListener('click',()=>{
   let productId = button.dataset.productId;
   addCartItem(productId);
   updateCartCounter();
-
   }
 );
 });
