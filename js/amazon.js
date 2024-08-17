@@ -1,6 +1,8 @@
 import {cart, addCartItem} from '../data/cart.js';
 import {products} from '../data/products.js';
+export let sasa = 2;
 let pageHtml = '';
+console.log(cart);
 products.forEach((item)=>{
   pageHtml+=`<div class="product-container">
   <div class="product-image-container">
@@ -52,12 +54,16 @@ products.forEach((item)=>{
 </div>`
 
 })
+
  function updateCartCounter(){
   cartQuantity++;
+  //localStorage.setItem('cartCounter',JSON.stringify(cartQuantity));
   document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
 }
 document.querySelector(".js-product-grid").innerHTML = pageHtml;
- let cartQuantity = 0;
+//export let cartQuantity = JSON.parse(localStorage.getItem('cartCounter'));
+let cartQuantity = 0;
+ document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
 document.querySelectorAll(".js-add-to-cart").forEach((button)=>{
  button.addEventListener('click',()=>{
   let productId = button.dataset.productId;
