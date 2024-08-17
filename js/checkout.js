@@ -46,7 +46,7 @@ cart.forEach((cartItem)=>{
                 <div class="delivery-options-title">
                   Choose a delivery option:
                 </div>
-                  ${deliveryDate(matchingProduct)}
+                  ${deliveryDate(matchingProduct,cartItem)}
 
                   </div>
                 </div>
@@ -56,17 +56,18 @@ cart.forEach((cartItem)=>{
           document.querySelector('.js-order-summary').innerHTML = checkoutHtml;
 
 })
-function deliveryDate(matchingProduct){
+function deliveryDate(matchingProduct,cartItem){
 let today = dayjs();
 let deliveryOptionsHtml = '';
 deliveryOptions.forEach((deliveryOption,index)=>{
+  const check = cartItem.deliveryOptionId ==deliveryOption.id;
 let day = today.add(deliveryOption.day,'day');
 day = day.format('dddd , MMMM D');
 const cost = deliveryOption.cost /100;
 deliveryOptionsHtml+=`
 <div class="delivery-option">
       <input type="radio" 
-        class="delivery-option-input"
+        class="delivery-option-input" ${check ? 'checked' :''}
         name="${matchingProduct.id}">
       <div>
         <div class="delivery-option-date">
