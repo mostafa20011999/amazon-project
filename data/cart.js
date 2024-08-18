@@ -1,3 +1,4 @@
+
 export let cart =  JSON.parse(localStorage.getItem('cart'));
 if(!cart){
   cart = [{
@@ -43,6 +44,17 @@ export function removeCartItem(productId){
     }
   })
   cart = newCart;
+  localStore();
+}
+export function updateDeliveryOption(cartItemId,deliveryOptionID)
+{
+  let cartItem;
+  cart.forEach((item)=>{
+  if(cartItemId ===item.productId){
+    cartItem = item;
+  }
+  })
+  cartItem.deliveryOptionId =deliveryOptionID;
   localStore();
 }
 
