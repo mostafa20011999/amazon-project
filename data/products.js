@@ -7,7 +7,12 @@ export function getProductByCartId(cartItem){
 })
 return matchingProduct;
 }
-
+export function twoDigits (price){
+  price /=100;
+  Math.round(price);
+  price = price.toFixed(2);
+  return price;
+}
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
