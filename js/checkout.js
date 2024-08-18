@@ -3,8 +3,7 @@ import {products} from '../data/products.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryOptions } from '../data/deliveryOptions.js';
 let checkoutHtml = '';
-let totalQuantity = 0;
-let totalCost = 0;
+
 cart.forEach((cartItem)=>{
   let matchingProduct;
   products.forEach((product)=>{
@@ -12,11 +11,18 @@ cart.forEach((cartItem)=>{
       matchingProduct=product;
     } 
   })
-  totalQuantity += cartItem.quantity;
-  totalCost +=cartItem.quantity * matchingProduct.priceCents;
+ let matchingDate;
+ deliveryOptions.forEach((deliveryOption)=>{
+    if(deliveryOption.id===cartItem.deliveryOptionId){
+      matchingDate = deliveryOption;
+    }
+ })
+ let today = dayjs();
+ let day = today.add(matchingDate.day,'day');
+day = day.format('dddd , MMMM D');
   checkoutHtml+=` <div class="cart-item-container" id="${matchingProduct.id}">
             <div class="delivery-date">
-              Delivery date: Tuesday, June 21
+              Delivery date: ${day}
             </div>
 
             <div class="cart-item-details-grid">
@@ -60,7 +66,7 @@ function deliveryDate(matchingProduct,cartItem){
 let today = dayjs();
 let deliveryOptionsHtml = '';
 deliveryOptions.forEach((deliveryOption,index)=>{
-  const check = cartItem.deliveryOptionId ==deliveryOption.id;
+const check = cartItem.deliveryOptionId === deliveryOption.id;
 let day = today.add(deliveryOption.day,'day');
 day = day.format('dddd , MMMM D');
 const cost = deliveryOption.cost /100;
