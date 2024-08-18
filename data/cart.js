@@ -38,8 +38,9 @@ export function removeCartItem(productId){
   cart.forEach((product)=>{
     if(product.productId!==productId){
       newCart.push({
-        productId: `${product.productId}`,
-        quantity: product.quantity
+        productId: product.productId,
+        quantity: product.quantity,
+        deliveryOptionId: product.deliveryOptionId 
       })
     }
   })

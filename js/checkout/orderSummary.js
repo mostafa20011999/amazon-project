@@ -2,6 +2,7 @@ import {cart,removeCartItem,updateDeliveryOption} from '../../data/cart.js';
 import {products,getProductByCartId} from '../../data/products.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryOptions, getDeliveryOptionByCart } from '../../data/deliveryOptions.js';
+import { rerunPaymentSummary } from './paymentSummary.js';
 export function rerunOrderSummary(){
   let checkoutHtml = '';
   cart.forEach((cartItem)=>{
@@ -83,6 +84,7 @@ export function rerunOrderSummary(){
     deleteButton.addEventListener('click',()=>{
     const productId = deleteButton.dataset.productId;
     removeCartItem(productId);
+    rerunPaymentSummary();
   })
   });
   document.querySelectorAll('.js-delivery-option').forEach((option)=>{
@@ -91,6 +93,7 @@ export function rerunOrderSummary(){
       const cartItem = option.dataset.matchingProductId;
       updateDeliveryOption(cartItem,deliveryOption);
       rerunOrderSummary();
+      rerunPaymentSummary();
     })
   })
 }

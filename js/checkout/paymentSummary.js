@@ -15,7 +15,6 @@ export function rerunPaymentSummary(){
      const totalBeforeTax = itemsCost + deliveryFees;
      const tax =totalBeforeTax / 10;
      const totalGross = totalBeforeTax+tax;
-     console.log(totalGross);
      const paymentSummaryHtml = `
      <div class="payment-summary-title">
             Order Summary

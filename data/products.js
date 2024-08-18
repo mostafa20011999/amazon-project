@@ -8,8 +8,9 @@ export function getProductByCartId(cartItem){
 return matchingProduct;
 }
 export function twoDigits (price){
-  price /=100;
   Math.round(price);
+  price /=100;
+  //Math.round(price);
   price = price.toFixed(2);
   return price;
 }
