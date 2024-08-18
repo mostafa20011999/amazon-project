@@ -1,3 +1,12 @@
+export function getDeliveryOptionByCart(cartItem){
+  let matchingDate;
+  deliveryOptions.forEach((deliveryOption)=>{
+      if(deliveryOption.id===cartItem.deliveryOptionId){
+        matchingDate = deliveryOption;
+      }
+  })
+  return matchingDate;
+}
 export const deliveryOptions = [
   {
     id : '1',
