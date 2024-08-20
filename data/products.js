@@ -8,11 +8,8 @@ export function getProductByCartId(cartItem){
 return matchingProduct;
 }
 export function twoDigits (price){
-  Math.round(price);
-  price /=100;
-  //Math.round(price);
-  price = price.toFixed(2);
-  return price;
+  price = Math.round(price);
+  return(price/100).toFixed(2);
 }
 export const products = [
   {
