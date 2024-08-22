@@ -1,8 +1,8 @@
 import {cart, addCartItem} from '../data/cart.js';
 import {products} from '../data/products.js';
-export let sasa = 2;
+yalla();
+export function yalla(){
 let pageHtml = '';
-console.log(cart);
 products.forEach((item)=>{
   pageHtml+=`<div class="product-container">
   <div class="product-image-container">
@@ -54,15 +54,16 @@ products.forEach((item)=>{
 </div>`
 
 })
-
+console.log(pageHtml);
+document.querySelector(".js-product-grid").innerHTML = pageHtml;
+}
  function updateCartCounter(){
   cartQuantity++;
   //localStorage.setItem('cartCounter',JSON.stringify(cartQuantity));
   document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
 }
-document.querySelector(".js-product-grid").innerHTML = pageHtml;
 //export let cartQuantity = JSON.parse(localStorage.getItem('cartCounter'));
-let cartQuantity = 0;
+export let cartQuantity = 0;
  document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
 document.querySelectorAll(".js-add-to-cart").forEach((button)=>{
  button.addEventListener('click',()=>{
