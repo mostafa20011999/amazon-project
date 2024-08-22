@@ -54,7 +54,6 @@ products.forEach((item)=>{
 </div>`
 
 })
-console.log(pageHtml);
 document.querySelector(".js-product-grid").innerHTML = pageHtml;
 }
  function updateCartCounter(){
