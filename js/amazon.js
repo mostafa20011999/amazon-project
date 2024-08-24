@@ -1,7 +1,6 @@
 import {cart, addCartItem} from '../data/cart.js';
 import {products} from '../data/products.js';
-yalla();
-export function yalla(){
+
 let pageHtml = '';
 products.forEach((item)=>{
   pageHtml+=`<div class="product-container">
@@ -54,7 +53,7 @@ products.forEach((item)=>{
 
 })
 document.querySelector(".js-product-grid").innerHTML = pageHtml;
-}
+
  function updateCartCounter(){
   cartQuantity++;
   //localStorage.setItem('cartCounter',JSON.stringify(cartQuantity));
