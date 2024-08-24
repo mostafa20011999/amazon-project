@@ -1,6 +1,7 @@
 import {cart} from '../../data/cart.js'
 import { getDeliveryOptionByCart } from '../../data/deliveryOptions.js';
 import { getProductByCartId,twoDigits } from '../../data/products.js';
+import { addOrder,orderss } from '../../data/orders.js';
 export function rerunPaymentSummary(){
   let itemsCost=0;
   let deliveryFees = 0;
@@ -43,10 +44,31 @@ export function rerunPaymentSummary(){
             <div>Order total:</div>
             <div class="payment-summary-money">$${twoDigits(totalGross)}</div>
           </div>
-           <button class="place-order-button button-primary">
+           <button class="place-order-button button-primary js-place-order">
             Place your order
 
           </button>
      `
      document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHtml;
-}
+     document.querySelector('.js-place-order').addEventListener('click', async()=>{
+      try{
+         const response = await fetch ('https://supersimplebackend.dev/orders',{
+          method: 'post',
+          headers:{
+            'content-type' : 'application/json'
+          },
+          body: JSON.stringify({
+            cart : cart
+          })
+        });
+        const orders = await response.json();
+        addOrder(orders);
+      }
+    catch{
+      console.log('errorrrrr');
+    }
+    window.location.href = 'orders.html'
+    });
+    }
+    
+    

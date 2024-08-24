@@ -50,10 +50,12 @@ export function genProductsFetch(){
       }
       return new Productss(product);
     })
+  }).catch(()=>{
+    console.log('errrrrorororororo');
   })
   return x;
 }
-/*export function genProducts(renderProducts){
+export function genProducts(renderProducts){
   const xhr = new XMLHttpRequest();
   xhr.addEventListener('load',()=>{
   products = JSON.parse(xhr.response).map((product)=>{
@@ -63,10 +65,10 @@ export function genProductsFetch(){
     return new Productss(product);
   });
   renderProducts();
-  })
+  });
   xhr.open('GET','https://supersimplebackend.dev/products');
   xhr.send();
-}*/
+}
 
 /*export const products = [
   {
