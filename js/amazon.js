@@ -25,7 +25,6 @@ products.forEach((item)=>{
   <div class="product-price">
     $${(item.priceCents/100).toFixed(2)}
   </div>
-
   <div class="product-quantity-container">
     <select>
       <option selected value="1">1</option>
@@ -40,7 +39,7 @@ products.forEach((item)=>{
       <option value="10">10</option>
     </select>
   </div>
-
+    ${item.displayChart()}
   <div class="product-spacer"></div>
 
   <div class="added-to-cart">

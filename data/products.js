@@ -24,7 +24,24 @@ class Productss{
     this.rating = product.rating;
     this.priceCents = product.priceCents;
   }
+   displayChart  (){
+    return '';
 }
+}
+class Clothing extends Productss{
+  sizeChartLink;
+  constructor(product){
+    super(product);
+    this.sizeChartLink = product.sizeChartLink;
+  }
+  displayChart(){
+    return `<a target="_blank" href="${this.sizeChartLink}">size chart</a>`;
+  }
+
+}
+
+
+
 
 export const products = [
   {
@@ -685,8 +702,9 @@ export const products = [
       "mens"
     ]
   }
-];
-products.map((product)=>{
-return new Productss(product);
-})
-console.log(products);
+].map((product)=>{
+  if(product.type ==='clothing'){
+    return new Clothing(product);
+  }
+  return new Productss(product);
+});
