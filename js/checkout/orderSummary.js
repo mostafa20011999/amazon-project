@@ -9,7 +9,6 @@ export function rerunOrderSummary(){
   let matchingProduct=getProductByCartId(cartItem);
   const matchingDate = getDeliveryOptionByCart(cartItem);
   let today = dayjs();
-  console.log(matchingDate);
   let day = today.add(matchingDate.day,'day');
   day = day.format('dddd , MMMM D');
     checkoutHtml+=` <div class="cart-item-container" id="${matchingProduct.id}">
