@@ -1,4 +1,4 @@
-import {cart, addCartItem} from '../data/cart.js';
+import {cart, addCartItem,cartQuantity} from '../data/cart.js';
 import {products,genProducts} from '../data/products.js';
 genProducts(renderProducts);
  function renderProducts(){
@@ -56,11 +56,10 @@ products.forEach((item)=>{
 document.querySelector(".js-product-grid").innerHTML = pageHtml;
 
  function updateCartCounter(){
-  cartQuantity++;
+  console.log('sasa');
   document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
 }
 //export let cartQuantity = JSON.parse(localStorage.getItem('cartCounter'));
- let cartQuantity = 0;
  document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
 document.querySelectorAll(".js-add-to-cart").forEach((button)=>{
  button.addEventListener('click',()=>{
