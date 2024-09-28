@@ -34,7 +34,6 @@ if(item.productId === productId){
       deliveryOptionId : '1'
     })
   }
-  console.log(cart);
   localStore();
  cartQuantity++;
   localStorage.setItem('cartQuantity',JSON.stringify(cartQuantity));

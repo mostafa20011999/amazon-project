@@ -4,6 +4,10 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryOptions, getDeliveryOptionByCart } from '../../data/deliveryOptions.js';
 import { rerunPaymentSummary } from './paymentSummary.js';
 export function rerunOrderSummary(){
+  if(cart.length ===0){
+    document.querySelector('.js-order-summary').innerHTML = '<div>no products in the cart</div>'
+  }
+  else{
   let checkoutHtml = '';
   cart.forEach((cartItem)=>{
   let matchingProduct=getProductByCartId(cartItem);
@@ -86,6 +90,7 @@ export function rerunOrderSummary(){
     const productId = deleteButton.dataset.productId;
     removeCartItem(productId);
     rerunPaymentSummary();
+    rerunOrderSummary();
   })
   });
   document.querySelectorAll('.js-delivery-option').forEach((option)=>{
@@ -97,4 +102,5 @@ export function rerunOrderSummary(){
       rerunPaymentSummary();
     })
   })
+}
 }

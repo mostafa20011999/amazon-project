@@ -42,7 +42,7 @@ products.forEach((item)=>{
     ${item.displayChart()}
   <div class="product-spacer"></div>
 
-  <div class="added-to-cart">
+  <div class="added-to-cart" id='added-${item.id}'>
     <img src="images/icons/checkmark.png">
     Added
   </div>
@@ -56,7 +56,6 @@ products.forEach((item)=>{
 document.querySelector(".js-product-grid").innerHTML = pageHtml;
 
  function updateCartCounter(){
-  console.log('sasa');
   document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
 }
 //export let cartQuantity = JSON.parse(localStorage.getItem('cartCounter'));
@@ -65,6 +64,11 @@ document.querySelectorAll(".js-add-to-cart").forEach((button)=>{
  button.addEventListener('click',()=>{
   let productId = button.dataset.productId;
   addCartItem(productId);
+  const addedProduct = document.getElementById(`added-${productId}`);
+  addedProduct.style.opacity = 1;
+  setTimeout(()=>{
+    addedProduct.style.opacity = 0;
+  },500);
   updateCartCounter();
   }
 );

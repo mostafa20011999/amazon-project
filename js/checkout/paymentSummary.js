@@ -3,6 +3,10 @@ import { getDeliveryOptionByCart } from '../../data/deliveryOptions.js';
 import { getProductByCartId,twoDigits } from '../../data/products.js';
 import { addOrder,orderss } from '../../data/orders.js';
 export function rerunPaymentSummary(){
+  if(cart.length===0){
+    document.querySelector('.js-payment-summary').innerHTML = '<div>No products in the cart</div>';
+  }
+  else{
   let itemsCost=0;
   let deliveryFees = 0;
   let quantity = 0;
@@ -70,5 +74,6 @@ export function rerunPaymentSummary(){
     window.location.href = 'orders.html'
     });
     }
+  }
     
     
