@@ -1,7 +1,7 @@
 import {cart} from '../../data/cart.js'
 import { getDeliveryOptionByCart } from '../../data/deliveryOptions.js';
 import { getProductByCartId,twoDigits } from '../../data/products.js';
-import { addOrder,orderss } from '../../data/orders.js';
+import {loadPage} from '../orders.js'
 export function rerunPaymentSummary(){
   if(cart.length===0){
     document.querySelector('.js-payment-summary').innerHTML = '<div>No products in the cart</div>';
@@ -13,7 +13,7 @@ export function rerunPaymentSummary(){
   cart.forEach((cartItem)=>{
     const matchingProduct = getProductByCartId(cartItem);
     itemsCost+=matchingProduct.priceCents * cartItem.quantity;
-    quantity +=cartItem.quantity;
+    quantity +=Number(cartItem.quantity);
     const deliveryOption = getDeliveryOptionByCart(cartItem);
     deliveryFees+= deliveryOption.cost;
      })
@@ -56,6 +56,7 @@ export function rerunPaymentSummary(){
      `
      document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHtml;
      document.querySelector('.js-place-order').addEventListener('click', async()=>{
+      localStorage.setItem('gate','1');
      window.location.href = 'orders.html'
     });
     }

@@ -3,6 +3,7 @@ import {products,getProductByCartId} from '../../data/products.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryOptions, getDeliveryOptionByCart } from '../../data/deliveryOptions.js';
 import { rerunPaymentSummary } from './paymentSummary.js';
+import { twoDigits } from '../../data/products.js';
 export function rerunOrderSummary(){
   if(cart.length ===0){
     document.querySelector('.js-order-summary').innerHTML = '<div>no products in the cart</div>'
@@ -29,7 +30,7 @@ export function rerunOrderSummary(){
                     ${matchingProduct.name}
                   </div>
                   <div class="product-price">
-                  ${matchingProduct.price}
+                  $${twoDigits(matchingProduct.priceCents)}
                   </div>
                   <div class="product-quantity">
                     <span>
