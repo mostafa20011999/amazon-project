@@ -26,7 +26,7 @@ products.forEach((item)=>{
     $${(item.priceCents/100).toFixed(2)}
   </div>
   <div class="product-quantity-container">
-    <select>
+    <select id ='select${item.id}'>
       <option selected value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -63,7 +63,9 @@ document.querySelector(".js-product-grid").innerHTML = pageHtml;
 document.querySelectorAll(".js-add-to-cart").forEach((button)=>{
  button.addEventListener('click',()=>{
   let productId = button.dataset.productId;
-  addCartItem(productId);
+  const x = document.getElementById(`select${productId}`);
+  const amount = x.value;
+  addCartItem(productId,amount);
   const addedProduct = document.getElementById(`added-${productId}`);
   addedProduct.style.opacity = 1;
   setTimeout(()=>{

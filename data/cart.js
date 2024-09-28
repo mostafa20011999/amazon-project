@@ -19,10 +19,10 @@ cart =  JSON.parse(localStorage.getItem('cart'))||[];
 function localStore(){
   localStorage.setItem('cart',JSON.stringify(cart));
   }
-export function addCartItem(productId){
+export function addCartItem(productId,amount){
   cart.forEach((item)=>{
 if(item.productId === productId){
-  item.quantity++;
+  item.quantity+=amount;
   productId='';
   
 }
@@ -30,12 +30,12 @@ if(item.productId === productId){
   if(productId){
     cart.push({
       productId,
-      quantity : 1,
+      quantity : amount,
       deliveryOptionId : '1'
     })
   }
   localStore();
- cartQuantity++;
+ cartQuantity+=Number(amount);
   localStorage.setItem('cartQuantity',JSON.stringify(cartQuantity));
 }
 export function removeCartItem(productId){

@@ -20,6 +20,7 @@ export function rerunPaymentSummary(){
      const totalBeforeTax = itemsCost + deliveryFees;
      const tax =totalBeforeTax / 10;
      const totalGross = totalBeforeTax+tax;
+     localStorage.setItem('total',JSON.stringify(totalGross));
      const paymentSummaryHtml = `
      <div class="payment-summary-title">
             Order Summary

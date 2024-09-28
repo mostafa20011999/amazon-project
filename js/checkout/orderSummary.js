@@ -12,7 +12,6 @@ export function rerunOrderSummary(){
   cart.forEach((cartItem)=>{
   let matchingProduct=getProductByCartId(cartItem);
   const matchingDate = getDeliveryOptionByCart(cartItem);
-  console.log(cart);
   let today = dayjs();
   let day = today.add(matchingDate.day,'day');
   day = day.format('dddd , MMMM D');
