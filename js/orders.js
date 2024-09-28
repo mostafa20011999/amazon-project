@@ -3,6 +3,8 @@ import { getDeliveryOptionByCart } from "../data/deliveryOptions.js";
 import {cart} from "../data/cart.js"
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 async function loadPage(){
+    
+    const allOrders = JSON.parse(localStorage.getItem('allOrders'))||[];
     await genProductsFetch();
     let day = dayjs();
     day = day.format('DD , MMM , YYYY');
@@ -41,8 +43,8 @@ async function loadPage(){
         </a>
     </div>`
     })
-    let totalss = JSON.parse(localStorage.getItem('total'));
-    totalss = twoDigits(totalss);
+    let totals = JSON.parse(localStorage.getItem('total'));
+    totals = twoDigits(totals);
     const ordersHtml = ` <div class="order-container">       
     <div class="order-header">
     <div class="order-header-left-section">
@@ -52,7 +54,7 @@ async function loadPage(){
         </div>
         <div class="order-total">
         <div class="order-header-label">Total:</div>
-        <div>$${totalss}</div>
+        <div>$${totals}</div>
         </div>
     </div>
 
@@ -67,9 +69,19 @@ async function loadPage(){
 
     </div>
     </div> `
-    document.querySelector('.js-orders-grid').innerHTML = ordersHtml;
+    if(cart.length>0){
+    allOrders.unshift(ordersHtml);
+    }
+    let allPageHtml = '';
+    allOrders.forEach((order)=>{
+        allPageHtml+=order;
+    })
+    document.querySelector('.js-orders-grid').innerHTML = allPageHtml;
+    localStorage.setItem('allOrders',JSON.stringify(allOrders));
     localStorage.removeItem('cart');
     localStorage.removeItem('cartQuantity');
+    localStorage.removeItem('total');
 }
+
 loadPage();
 
